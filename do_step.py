@@ -78,12 +78,12 @@ def do_step(data: data_m.Data, i=0, smearing_w_old=None):
 
     print("Building self-energy...")
     self_energy = uom_m.compute_loc_self_en(g0loc, data)
-    # self_energy = sop_m.cond_and_epurate(self_energy, 1.e-0, 1.e-3)
+    self_energy = sop_m.cond_and_epurate(self_energy, 1.e1, 1.e-15)
 
     self_energy_old, occ_loc_list, e_hub_old = locgw_m.sigmaLocAndPhiList(g0loc_old, sop_m.from_sop_2_json(data.u_sop[0]), 1)
 
     self_energy_old = [sop_m.from_json_2_sop(self_energy_old[iatom]) for iatom in range(data.n_atoms)]
-    # self_energy_old = sop_m.cond_and_epurate(self_energy_old, 1.e-0, 1.e-3)
+    self_energy_old = sop_m.cond_and_epurate(self_energy_old, 1.e1, 1.e-15)
 
     for iatom in range(data.n_atoms):
         self_energy_old[iatom].efermi = self_energy[iatom].efermi
@@ -98,7 +98,7 @@ def do_step(data: data_m.Data, i=0, smearing_w_old=None):
     ehub = uom_m.compute_hub_energy(g0loc, self_energy, data)
     print("ehub", ehub)
     print("ehub_old", e_hub_old)
-    exit()
+    exit(0)
 
     self_energy_old = [sop_m.from_sop_2_json(self_energy_old[iatom]) for iatom in range(data.n_atoms)]
 
@@ -113,6 +113,18 @@ def do_step(data: data_m.Data, i=0, smearing_w_old=None):
 
     g1 = sop_m.cond_and_epurate(g1, 1.e-2, 1.e-8)
     sop_m.write(g1[0], "results/g1_ik0.sop")
+
+    mu = sop_m.compute_efermi(g1, data, data.efermi_ks0)
+    mu_old, G1Ks_sm = locgw_m.findMuAndsmearG(g1_old, data.w_k, data.n_electrons, sop_m.marzari_vanderbilt_smearing, data.degauss, smearing_w_old, data.efermi_ks0)
+
+    self_energy_ks = uom_m.loc_2_ks(self_energy, data) 
+    tr_ln = uom_m.compute_trln(g1, self_energy_ks, data)
+    tr_ln_old = locgw_m.TrLnGoGSmear(g1_old, self_energy_old, h0, data.efermi_ks0, )
+
+    print("tr_ln", tr_ln)
+    print("tr_ln_old", tr_ln_old)
+    exit(0)
+
 
     g1loc = uom_m.ks_2_loc(g1, data)
     g1loc = sop_m.cond_and_epurate(g1loc, 1.e-2, 1.e-8)
