@@ -1,0 +1,6 @@
+*.dat
+output/
+results/
+projwfc/
+*.sop
+*.npy
