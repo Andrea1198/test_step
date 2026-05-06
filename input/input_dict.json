@@ -1,0 +1,39 @@
+{
+   "control" : { 
+      "fileNameUSOP"  	: "Usop.sop", 
+      "runCommand"    	: " mpirun -np 4", 
+      "path2QEBin"    	: "/home/pintus/Documents/codes/q-e/build/bin/", 
+      "outdir"        	: "./results/", 
+      "outdirOld"     	: "./results_old/", 
+      "inputDir"      	: "./input/", 
+      "outputDir"     	: "./output/",
+      "imDir"	      	: "./images/",
+      "prefix"        	: "SrVO3",
+      "restart"	      	: false,
+      "fullScf"		: true,
+      "parallel"	: true,
+      "maxProcesses"	: 4 
+   },
+   "system" : { 
+      "smearingTemp"     : 0.02, 
+      "smearingWindow"   : {"LB" : -10, "RB" : 10}, 
+      "atomDictList"     : [ 
+	 {
+	    "atom"       : "V",
+	    "atomIndex"  :  1,
+	    "indexList"  :  [5,6,7,8,9], 
+	    "lIndex"     :  2,
+	    "localize"   :  true
+	 }
+      ]
+   },
+   "electrons" : {
+      "condenseFact" 	: 0.5,
+      "condenseFactFull": 10,
+      "thrEpur"		: 1e-6,
+      "eta"           	: 1e-1,
+      "maxIterScf"    	: 100,
+      "convThrScf"    	: 1e-8,
+      "betaMix"       	: 0.1
+   }
+}

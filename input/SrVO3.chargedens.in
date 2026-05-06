@@ -1,0 +1,9 @@
+&chargedens_fromfile 
+	prefix       = 'SrVO3'
+	outdir       = './results/'
+	outdir_old   = './results/'
+	filename_rho = 'densityMat.dat'
+	change_rho   = .true.
+	mix_rho      = .true.
+	mixing_beta_chgdens  = 0.1
+/

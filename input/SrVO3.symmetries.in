@@ -1,0 +1,5 @@
+&chargedens_fromfile 
+	prefix       = 'SrVO3'
+	outdir       = './results/'
+	filename_dmat= 'sym.dat'
+/

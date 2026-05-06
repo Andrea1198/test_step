@@ -1,0 +1,39 @@
+&control
+  calculation  = 'bands'
+  pseudo_dir = '../pseudo/'
+  prefix = 'SrVO3'
+  outdir = './results/'
+ /
+ &system
+    ibrav = 1
+    celldm(1) = 7.226
+    nat = 5
+    ntyp = 3
+    ecutwfc = 100
+    occupations = 'smearing'
+    smearing = 'mv'
+    degauss = 0.02
+    nbnd = 50
+ /
+ &electrons
+    diagonalization = 'cg'
+    electron_maxstep = 1000
+    conv_thr = 1.e-12
+ /
+ATOMIC_SPECIES
+ V   50.942   V.upf
+ O   15.999   O.upf
+ Sr  87.62    Sr.upf
+ATOMIC_POSITIONS {crystal} 
+V            0.00  0.00  0.00 
+O            0.50  0.00  0.00 
+O            0.00  0.50  0.00 
+O            0.00  0.00  0.50 
+Sr           0.50  0.50  0.50
+K_POINTS crystal_b
+5 
+0.5   0.5   0.5 40
+0.0   0.0   0.0 40
+0.0   0.5   0.0 40
+0.5   0.5   0.0 40
+0.0   0.0   0.0 1

@@ -1,0 +1,42 @@
+&control 
+  calculation  = 'scf'
+  pseudo_dir   = '/home/pintus/Documents/pseudo/SSSP2.0/'
+  prefix       = 'SrVO3'
+  outdir       = './results/'
+/ 
+
+&system 
+ibrav        =  1  
+celldm(1)    =  7.226
+nat          =  5  
+ntyp         =  3  
+ecutwfc      =  100.0  
+occupations  =  'smearing'
+smearing     =  'mv'
+degauss      =  0.02
+nbnd         =  50  
+/ 
+
+&electrons 
+diagonalization  = 'david'
+electron_maxstep = 1  
+conv_thr         = 1000  
+diago_thr_init   = 1.0d-13  
+startingpot      = 'file'
+startingwfc	 = 'file'
+diago_full_acc   = .true.  
+/ 
+
+ATOMIC_SPECIES 
+V	50.9415	V.upf
+Sr	87.62	Sr.upf
+O	15.999	O.upf
+
+ATOMIC_POSITIONS { alat }
+V   0.000   0.000   0.000
+Sr  0.500   0.500   0.500
+O   0.500   0.000   0.000
+O   0.000   0.500   0.000
+O   0.000   0.000   0.500
+K_POINTS   { automatic }
+2 2 2 	0 0 0

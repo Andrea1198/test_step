@@ -1,0 +1,6 @@
+&projwfc 
+	prefix       = 'SrVO3'
+	outdir       = './results/'
+	filpdos      = './projwfc/'
+	filproj      = './projwfc/'
+/
